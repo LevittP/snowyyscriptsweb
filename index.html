@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snowyyscripts | Script Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080910;
+    --purple: #9870ff;
+    --blue: #628cff;
+    --text: #f5f3ff;
+    --muted: #85879e;
+    --border: rgba(255,255,255,.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    filter: blur(170px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    background: #683cff;
+    opacity: .13;
+    top: -300px;
+    left: 15%;
+}
+
+body::after {
+    background: #287cff;
+    opacity: .09;
+    bottom: -300px;
+    right: -200px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar {
+    height: 75px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(8,9,16,.8);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span { color: var(--purple); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nav-links a:hover { color: white; }
+
+.container {
+    width: 84%;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    padding: 95px 0 55px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 9px 15px;
+    border-radius: 30px;
+    border: 1px solid rgba(152,112,255,.3);
+    background: rgba(152,112,255,.1);
+    color: #c0aaff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 27px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 85px);
+    font-weight: 900;
+    letter-spacing: -5px;
+    line-height: 1.05;
+}
+
+.gradient {
+    background: linear-gradient(110deg,#b18bff,#638cff,#c39aff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero > p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 450px;
+    margin: 22px auto;
+}
+
+.profile {
+    max-width: 700px;
+    margin: 45px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    text-align: left;
+    padding: 25px;
+    background: linear-gradient(120deg,rgba(152,112,255,.12),rgba(98,140,255,.04));
+    border: 1px solid rgba(152,112,255,.23);
+    border-radius: 18px;
+    box-shadow: 0 15px 60px rgba(0,0,0,.2);
+    backdrop-filter: blur(20px);
+}
+
+.avatar-wrap {
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg,var(--purple),var(--blue));
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+    background: #191827;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-info h2 {
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.profile-info p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+.profile-badge {
+    display: inline-block;
+    color: #b69aff;
+    background: rgba(152,112,255,.1);
+    border: 1px solid rgba(152,112,255,.2);
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 9px;
+    margin-top: 10px;
+    font-weight: 800;
+}
+
+.profile-link {
+    background: linear-gradient(110deg,#895eff,#567eff);
+    padding: 13px 17px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.profile-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 25px #895eff55;
+}
+
+.stats {
+    max-width: 700px;
+    margin: 20px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 13px;
+}
+
+.stat {
+    padding: 22px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    transition: .2s;
+}
+
+.stat:hover {
+    border-color: rgba(152,112,255,.35);
+    background: rgba(152,112,255,.05);
+}
+
+.stat h3 {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+.scripts {
+    padding: 75px 0 110px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 20px;
+}
+
+.section-header h2 {
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.section-header p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+.search {
+    width: 250px;
+    padding: 13px 15px;
+    border-radius: 9px;
+    outline: none;
+    border: 1px solid var(--border);
+    background: #111321;
+    color: white;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.search:focus { border-color: var(--purple); }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.script-card {
+    overflow: hidden;
+    border-radius: 14px;
+    background: linear-gradient(145deg,#151727,#0e101b);
+    border: 1px solid var(--border);
+    transition: .25s;
+    animation: appear .5s ease both;
+}
+
+.script-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(152,112,255,.5);
+    box-shadow: 0 15px 40px #0006;
+}
+
+.thumbnail {
+    height: 155px;
+    background: linear-gradient(135deg,#30224e,#172844);
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.access {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    background: #090a14dd;
+    border: 1px solid var(--border);
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card-content { padding: 19px; }
+
+.game {
+    color: #ad91ff;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.card-content h3 {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.description {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+    margin-top: 10px;
+    min-height: 38px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    margin-top: 18px;
+    padding-top: 15px;
+}
+
+.card-stats {
+    display: flex;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.view {
+    color: #b59aff;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.view:hover { color: white; }
+
+.loading {
+    grid-column: 1/-1;
+    padding: 65px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #ffffff18;
+    border-top-color: var(--purple);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 30px 8%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+footer a { color: #ad91ff; }
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:850px) {
+    .grid { grid-template-columns: repeat(2,1fr); }
+    .container { width: 90%; }
+}
+
+@media(max-width:600px) {
+    .navbar { padding: 0 5%; }
+    .nav-links { gap: 13px; font-size: 10px; }
+    .hero { padding-top: 65px; }
+    .hero h1 { letter-spacing: -3px; }
+    .profile { flex-wrap: wrap; }
+    .profile-link { width: 100%; text-align: center; }
+    .grid { grid-template-columns: 1fr; }
+    .section-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .search { width: 100%; }
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+        gap: 8px;
+    }
+    .stat { padding: 17px; }
+    .stat h3 { font-size: 21px; }
+    footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">SNOWYY<span>.</span></div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#scripts">Scripts</a>
+        <a href="https://robloxscripts.com/user/Snowyyscripts" target="_blank">My Profile ↗</a>
+    </div>
+</nav>
+
+<main class="container">
+
+<section class="hero" id="home">
+
+    <div class="badge">✦ ROBLOXSCRIPTS DEVELOPER</div>
+
+    <h1>
+        Welcome to<br>
+        <span class="gradient">Snowwy's Hub.</span>
+    </h1>
+
+    <p>
+        Explore my RobloxScripts releases, discover my projects,
+        and find all my scripts in one place.
+    </p>
+
+    <div class="profile">
+
+        <div class="avatar-wrap">
+            <img
+                class="avatar"
+                id="avatar"
+                src="https://placehold.co/150x150/171727/9870ff?text=S"
+                alt="Snowyyscripts profile picture"
+            >
+        </div>
+
+        <div class="profile-info">
+            <h2 id="username">Snowyyscripts</h2>
+            <p id="bio">RobloxScripts Developer</p>
+            <div class="profile-badge">✦ ROBLOXSCRIPTS AUTHOR</div>
+        </div>
+
+        <a class="profile-link"
+           href="https://robloxscripts.com/user/Snowyyscripts"
+           target="_blank">
+            View Profile ↗
+        </a>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3 id="scriptCount">--</h3>
+            <p>Scripts</p>
+        </div>
+
+        <div class="stat">
+            <h3 id="followers">--</h3>
+            <p>Followers</p>
+        </div>
+
+        <div class="stat">
+            <h3 id="following">--</h3>
+            <p>Following</p>
+        </div>
+
+        <div class="stat">
+            <h3 id="reputation">--</h3>
+            <p>Reputation</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="scripts" id="scripts">
+
+    <div class="section-header">
+
+        <div>
+            <h2>My <span class="gradient">Scripts.</span></h2>
+            <p>Published scripts from my RobloxScripts account.</p>
+        </div>
+
+        <input
+            class="search"
+            id="search"
+            placeholder="Search my scripts..."
+        >
+
+    </div>
+
+    <div class="grid" id="grid">
+
+        <div class="loading">
+            <div class="spinner"></div>
+            Loading Snowyyscripts' scripts...
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <span>© 2026 Snowyyscripts. All rights reserved.</span>
+    <span>Powered by <a href="https://robloxscripts.com/" target="_blank">RobloxScripts.com</a></span>
+</footer>
+
+<script>
+const API = "https://robloxscripts.com/api/v1";
+const PROFILE = "https://robloxscripts.com/user/Snowyyscripts";
+const AUTHOR = "Snowyyscripts";
+
+let allScripts = [];
+
+const $ = id => document.getElementById(id);
+
+function formatNumber(n) {
+    return new Intl.NumberFormat("en-US", {
+        notation: "compact",
+        maximumFractionDigits: 1
+    }).format(n || 0);
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[c]);
+}
+
+async function loadProfile() {
+
+    try {
+        const response = await fetch(PROFILE);
+
+        if (!response.ok) throw new Error("Profile unavailable");
+
+        const html = await response.text();
+
+        const doc = new DOMParser().parseFromString(
+            html,
+            "text/html"
+        );
+
+        const image =
+            doc.querySelector('meta[property="og:image"]')?.content ||
+            doc.querySelector('meta[name="twitter:image"]')?.content;
+
+        const description =
+            doc.querySelector('meta[name="description"]')?.content;
+
+        if (image) $("avatar").src = image;
+
+        if (description) $("bio").textContent = description;
+
+    } catch (error) {
+        console.warn("Profile image/bio unavailable:", error);
+    }
+
+}
+
+async function loadScripts() {
+
+    const grid = $("grid");
+
+    try {
+
+        const response = await fetch(
+            `${API}/scripts?author=${encodeURIComponent(AUTHOR)}&limit=50&sort=newest`
+        );
+
+        if (!response.ok) {
+            throw new Error(`API returned ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        allScripts = result.data || [];
+
+        $("scriptCount").textContent = formatNumber(
+            result.pagination?.total ?? allScripts.length
+        );
+
+        renderScripts(allScripts);
+
+    } catch (error) {
+
+        console.error("Script loading error:", error);
+
+        grid.innerHTML = `
+            <div class="loading">
+                <h3>Unable to load scripts.</h3>
+                <p style="margin-top:10px">
+                    RobloxScripts API may be temporarily unavailable.
+                    Please refresh the page.
+                </p>
+            </div>
+        `;
+    }
+}
+
+function renderScripts(scripts) {
+
+    const grid = $("grid");
+
+    if (!scripts.length) {
+
+        grid.innerHTML = `
+            <div class="loading">
+                <h3>No scripts found.</h3>
+                <p style="margin-top:10px">
+                    No published scripts were returned for ${AUTHOR}.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    grid.innerHTML = scripts.map((script, index) => {
+
+        const image = script.image ||
+                      script.game?.iconUrl ||
+                      "";
+
+        return `
+            <article class="script-card"
+                     style="animation-delay:${index * .04}s">
+
+                <div class="thumbnail">
+
+                    ${image ? `
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(script.title)}"
+                            loading="lazy"
+                            onerror="this.style.display='none'"
+                        >
+                    ` : ""}
+
+                    <span class="access">
+                        ${escapeHTML(script.accessType || "Free")}
+                    </span>
+
+                </div>
+
+                <div class="card-content">
+
+                    <div class="game">
+                        ${escapeHTML(script.game?.name || "Universal")}
+                    </div>
+
+                    <h3>${escapeHTML(script.title || "Untitled Script")}</h3>
+
+                    <p class="description">
+                        ${escapeHTML(script.description || "No description available.")}
+                    </p>
+
+                    <div class="card-footer">
+
+                        <div class="card-stats">
+                            <span>◉ ${formatNumber(script.views)}</span>
+                            <span>♥ ${formatNumber(script.likes)}</span>
+                        </div>
+
+                        <a
+                            class="view"
+                            href="${escapeHTML(script.scriptPageUrl || PROFILE)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View Script ↗
+                        </a>
+
+                    </div>
+
+                </div>
+            </article>
+        `;
+
+    }).join("");
+}
+
+$("search").addEventListener("input", event => {
+
+    const query = event.target.value.toLowerCase();
+
+    renderScripts(allScripts.filter(script => {
+
+        const searchable = [
+            script.title,
+            script.description,
+            script.game?.name,
+            ...(script.tags || [])
+        ].join(" ").toLowerCase();
+
+        return searchable.includes(query);
+
+    }));
+
+});
+
+loadProfile();
+loadScripts();
+
+</script>
+
+</body>
+</html>
